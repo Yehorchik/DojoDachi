@@ -18,18 +18,17 @@ namespace DojoDachi.Controllers
                 HttpContext.Session.SetInt32("energy" , 50);
                 HttpContext.Session.SetInt32("meals" , 3);
                 TempData["message"] = "this is your new pet ,Let's start to play";
-
             }
             int? happines = HttpContext.Session.GetInt32("happines");
             int? energy = HttpContext.Session.GetInt32("energy");
             int? meals = HttpContext.Session.GetInt32("meals");
 
-            if(fulness == 0 || happines == 0)
+            if(fulness <= 0 || happines <= 0)
             {
               TempData["gamestatus"] = "over";
               TempData["message"] = "Game Over! your DojoDachi die(((";
             }
-            if (fulness >= 100 && happines >= 100 && energy >=100)
+            if (fulness >= 100 && happines >= 100 )
             {
                 TempData["gamestatus"] = "over";
                 TempData["message"] = "Game Over! You win , you Dojodachi the happiest in the world!))";
@@ -39,6 +38,7 @@ namespace DojoDachi.Controllers
             TempData["fulness"] = fulness;
             TempData["energy"] = energy;
             TempData["meals"] = meals;
+            Console.WriteLine(TempData["fulness"]);
             return View();
         }
 
@@ -126,6 +126,26 @@ namespace DojoDachi.Controllers
                 TempData["message"] = $"Pet was working hard  and earned {meal} meals for you";
                 return RedirectToAction("Index");
             }
+        }
+
+        [HttpGet("sleep")]
+        public IActionResult Sleep()
+        {
+            int? energy = HttpContext.Session.GetInt32("energy") + 15;
+            HttpContext.Session.SetInt32("energy" ,(int)energy);
+            int? fulness = HttpContext.Session.GetInt32("fulness") - 5;
+            HttpContext.Session.SetInt32("fulness" ,(int)fulness);
+            int? happines = HttpContext.Session.GetInt32("happines") - 5;
+            HttpContext.Session.SetInt32("happines" ,(int)happines);
+            TempData["message"] = $"tssss he is sleeping right now!";
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet("restart")]
+        public IActionResult Restart()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index");
         }
     }
 }

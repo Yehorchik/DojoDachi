@@ -13,14 +13,26 @@
 </head>
 <body>
     
-     <p>Fulness : @TempData["fulness"] , Happiness : @TempData["happines"] , Energy : @TempData["energy"] , Meals : @TempData["meals"]</p>
-     <img src="https://www.clipartmax.com/png/middle/213-2131283_anime-modern-tamagotchi-shimashimatchi.png" >
-     <div class="buttons">
-        <p>@TempData["message"]</p>
-        <a href="/feed"><input type="submit" value="Feed"></a>
-        <a href="/play"><input type="submit" value="Play"></a>
-        <a href="/work"><input type="submit" value="Work"></a>
-        <a href="/sleep"><input type="submit" value="Sleep"></a>
-     </div>
+            <p>Fulness : @TempData["fulness"] , Happiness : @TempData["happines"] , Energy : @TempData["energy"] , Meals : @TempData["meals"]</p>
+            <img src="https://www.clipartmax.com/png/middle/213-2131283_anime-modern-tamagotchi-shimashimatchi.png" >
+    @{ if(@TempData["gamestatus"]== "playing")
+     {
+            <div class="buttons">
+                <p>@TempData["message"]</p>
+                <a href="/feed"><input type="submit" value="Feed"></a>
+                <a href="/play"><input type="submit" value="Play"></a>
+                <a href="/work"><input type="submit" value="Work"></a>
+                <a href="/sleep"><input type="submit" value="Sleep"></a>
+            </div>
+     }
+         
+        if(@TempData["gamestatus"] == "over")
+        {
+
+            <p>@TempData["message"]</p>
+            <p>Do you want to play again???</p>
+            <a href="/restart"><input type="submit" value="Restart"></a>
+        }
+     }
 </body>
 </html>
