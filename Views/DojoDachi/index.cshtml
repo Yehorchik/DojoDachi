@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DojoDachi</title>
+    <style>
+        img{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    
+     <p>Fulness : @TempData["fulness"] , Happiness : @TempData["happines"] , Energy : @TempData["energy"] , Meals : @TempData["meals"]</p>
+     <img src="https://www.clipartmax.com/png/middle/213-2131283_anime-modern-tamagotchi-shimashimatchi.png" >
+     <div class="buttons">
+        <p>@TempData["message"]</p>
+        <a href="/feed"><input type="submit" value="Feed"></a>
+        <a href="/play"><input type="submit" value="Play"></a>
+        <a href="/work"><input type="submit" value="Work"></a>
+        <a href="/sleep"><input type="submit" value="Sleep"></a>
+     </div>
+</body>
+</html>
